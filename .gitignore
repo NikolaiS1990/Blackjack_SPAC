@@ -3,3 +3,6 @@
 
 # cache
 __pycache__/
+
+# Unit test files
+.coverage
