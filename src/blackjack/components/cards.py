@@ -66,7 +66,7 @@ class Cards:
 
         self.__deck = list(chain.from_iterable(deck.values()))
 
-    def shuffle_cards(self):
+    def shuffle_cards(self) -> None:
         """Method for shuffling the card deck.
     
         This method randomizes the order of cards in the internal deck list
@@ -108,7 +108,7 @@ class Cards:
 
         return self.__deck.pop(card_number)
 
-    def get_deck(self) -> tuple[str, int] | str:
+    def get_deck(self) -> tuple[str, int] | None:
         """Return the current state of the deck.
 
         This method provides a snapshot of the remaining cards in the deck.
