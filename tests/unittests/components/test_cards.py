@@ -1,5 +1,5 @@
 import unittest
-from src.blackjack.components.cards import Cards
+from blackjack.components.cards import Cards
 
 class TestCards(unittest.TestCase):
 
@@ -14,19 +14,51 @@ class TestCards(unittest.TestCase):
 
         self.cards.set_deck()
 
-        # print(self.cards._Cards__deck.pop(1))
-
         self.assertEqual(len(self.cards.get_deck()), 52)
 
-    # def test_shuffle_cards_randomizes_deck(self):
-    #     """Test that the shuffle_cards randomizes the card deck"""
+    def test_shuffle_cards_randomizes_deck(self):
+        """Test that the shuffle_cards randomizes the card deck"""
 
+        self.cards.set_deck()
 
-    #     intial_order = self.cards.get_deck()
+        intial_order = self.cards.get_deck()
 
-    #     self.shuffle_cards()
+        self.cards.shuffle_cards()
 
-    #     new_order = self.cards.get_deck()
+        new_order = self.cards.get_deck()
 
-    #     self.assertIsNot = 
+        self.assertNotEqual(intial_order, new_order)
 
+    def test_pick_card_returns_none(self):
+
+        self.assertFalse(self.cards.pick_card())
+
+    def test_pick_card_removes_card_from_deck(self):
+
+        self.cards.set_deck()
+
+        self.cards.shuffle_cards()
+
+        self.cards.pick_card()
+
+        self.assertNotEqual(len(self.cards.get_deck()), 52)
+
+    def test_pick_card_returns_card(self):
+
+        self.cards.set_deck()
+
+        self.cards.shuffle_cards()
+
+        self.assertIsInstance(self.cards.pick_card(), list)
+
+    def test_get_deck_returns_none(self):
+
+        self.assertFalse(self.cards.get_deck())
+
+    def test_get_deck_returns_tuple(self):
+
+        self.cards.set_deck()
+
+        self.cards.shuffle_cards()
+
+        self.assertIsInstance(self.cards.get_deck(), tuple)
