@@ -29,7 +29,7 @@ class Cards:
         deck.pick_card()
     """
     def __init__(self):
-        self.__deck: list[list, str] = []
+        self.__deck: list[list[str, int]] = []
 
 
     def set_deck(self) -> None:
