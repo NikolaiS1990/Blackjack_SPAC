@@ -48,7 +48,7 @@ use Windows, then you should set up WSL before proceeding.
 Clone the repository and consult the uv_guide.md in docs on how to install UV
 if you haven't it install already.
 
-Once UV is installed, activate the environment and run `uv sync`.
+Once UV is installed, run `uv sync` and activate the environment.
 
 # 🧪 Run unittests
 To run all unittests, run this line
