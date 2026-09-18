@@ -4,6 +4,12 @@ This module provides the `Hand` class for managing a player's or dealer's cards
 in a game of Blackjack. It tracks individual cards, calculates the total hand value
 (considering Ace flexibility if implemented later), and enforces maximum value limits
 to detect busts.
+
+Classes:
+    Hand: Manages the hand of the player or dealer.
+
+Author:
+    Nikolai Sandbeck
 """
 
 
