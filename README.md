@@ -8,26 +8,27 @@ Project structure (hidden automatically generated files and folders like .venv n
 
 ```text
 .
-├── LICENSE
-├── Nikolai Sandbeck - kravspecifikation til blackjack.pdf
-├── README.md
-├── dist
-│   ├── blackjack-0.1.0-py3-none-any.whl
-│   └── blackjack-0.1.0.tar.gz
 ├── docs
 │   └── uv_guide.md
+├── LICENSE
+├── Nikolai Sandbeck - kravspecifikation til blackjack.pdf
 ├── pyproject.toml
+├── README.md
 ├── src
 │   └── blackjack
-│       ├── __init__.py
-│       └── components
-│           ├── __init__.py
-│           ├── cards.py
-│           └── dealer_class.py
+│       ├── components
+│       │   ├── cards.py
+│       │   ├── dealer_class.py
+│       │   ├── hand.py
+│       │   ├── __init__.py
+│       │   └── pool.py
+│       └── __init__.py
 ├── tests
 │   └── unittests
 │       └── components
-│           └── test_cards.py
+│           ├── test_cards.py
+│           ├── test_hand.py
+│           └── test_pool.py
 └── uv.lock
 ```
 
@@ -50,10 +51,15 @@ if you haven't it install already.
 
 Once UV is installed, run `uv sync` and activate the environment.
 
-# 🧪 Run unittests
-To run all unittests, run this line
+# 🧪 Run unit tests
+To run all unit tests, run this line
 ```bash
 uv run pytest tests/ -v
+```
+
+How to run unit test on a specific file:
+```bash
+uv run pytest tests/unittests/components/test_hand.py -v
 ```
 
 See what test coverage percentage you have:
