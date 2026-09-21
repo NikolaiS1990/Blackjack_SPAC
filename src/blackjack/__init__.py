@@ -1,2 +1,9 @@
+from blackjack.components.game_class import Game
+
 def main() -> None:
-    print("Hello from blackjack!")
+    game = Game()
+    game.start_game()
+    game.round()
+
+if __name__ == "__main__":
+    main()

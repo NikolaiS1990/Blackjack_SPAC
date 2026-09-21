@@ -60,7 +60,7 @@ class Cards:
             "picture_cards_spades": [["Jack ♠", 10], ["Queen ♠", 10], ["King ♠", 10]],
             "ace_clubs": [["Ace ♣", 11]],
             "ace_diamonds": [["Ace ♦", 11]],
-            "ace_hearts": [["Ace♥", 11]],
+            "ace_hearts": [["Ace ♥", 11]],
             "ace_spades": [["Ace ♠", 11]]
         }
 
