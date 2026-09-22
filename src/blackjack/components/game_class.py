@@ -17,6 +17,7 @@ class Game():
         self.__pool: object = Pool()
 
         self.__run_game: bool = False
+        self.__run_round: bool = False
 
     def start_game(self) -> None:
         self.__run_game = True
@@ -81,7 +82,7 @@ class Game():
         return card
         
 
-    def __show_hands(self) -> None:
+    def __show_hands_and_player_pool(self) -> None:
         print(f"Dealer's hand: {self.__dealer_hand.get_cards_on_hand()}")
         print(f"Dealer's hand value: {self.__dealer_hand.get_hand_value()}")
 
@@ -89,40 +90,40 @@ class Game():
 
         print(f"Players's hand: {self.__player_hand.get_cards_on_hand()}")
         print(f"Players's hand value: {self.__player_hand.get_hand_value()}")
+        print(f"Pool: {self.__pool.get_amount()}")
 
 
-    def round(self) -> None:
+    def __round(self) -> None:
 
-        self.__prep_cards()
+        while self.__run_round == True:
 
-        while self.__run_game == True:
-
-            if self.__dealer_hand.get_hand_value() > 201:
+            if self.__dealer_hand.get_hand_value() > 21:
                 print("Dealer lost, the value of the hand exeeded 21!")
-                self.__run_game = False
+                self.__run_round = False
                 return
 
-            if self.__player_hand.get_hand_value() > 201:
+            if self.__player_hand.get_hand_value() > 21:
                 print("Player lost, the value of the hand exeeded 21!")
-                self.__run_game = False
+                self.__run_round = False
                 return
 
             action = self.actions()
 
             if action == "exit":
+                self.__run_round = False
                 self.__run_game = False
             elif action == "stand":
                 call('cls' if os.name == 'nt' else 'clear')
 
                 if self.__player_hand.get_hand_value() >= self.__dealer_hand.get_hand_value():
-                    self.__show_hands()
+                    self.__show_hands_and_player_pool()
                     print("Player wins")
                 else:
-                    self.__show_hands()
+                    self.__show_hands_and_player_pool()
                     print("Dealer wins")
-
-                self.__run_game = False
+                self.__run_round = False
                 return
+
             elif action == "hit":
                 if self.__dealer_hand.get_hand_value() > self.__dealer_hand.get_max_total_value():
                     self.__player_hand.add_card(self.__ace_handler("player"))
@@ -130,9 +131,31 @@ class Game():
                 else:
                     self.__player_hand.add_card(self.__ace_handler("player"))
 
-                self.__show_hands()
+                self.__show_hands_and_player_pool()
+
 
             else:
                 print("Something went wrong, closing the app")
+                self.__run_round = False
+                self.__run_game = False
                 sys.exit(1)
+
+    def run_rounds(self) -> None:
+
+        while self.__run_game == True:
+
+
+            if self.__pool.get_amount() <= 0:
+                self.__run_game = False
+
+                break
+            else:
+                self.__run_round = True
+
+
+                self.__prep_cards()
+                self.__round()
+
+
+
     
